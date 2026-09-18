@@ -36,7 +36,7 @@ The code is being organized and will be released soon. More details, including t
 ## BibTeX
 
 ```bibtex
-@inproceedings{mao2026hqdim,
+@inproceedings{mao2026hqdm,
   title     = {HQ-DM: Single Hadamard Transformation-Based Quantization-Aware Training for Low-Bit Diffusion Models},
   author    = {Mao, Shizhuo and Zou, Hongtao and Xie, Qihu and Chen, Song and Kang, Yi},
   booktitle = {European Conference on Computer Vision (ECCV)},
