@@ -1,0 +1,8 @@
+[submodule "third_party/clip"]
+	path = third_party/clip
+	url = https://github.com/openai/CLIP.git
+	shallow = true
+[submodule "third_party/taming-transformers"]
+	path = third_party/taming-transformers
+	url = https://github.com/CompVis/taming-transformers.git
+	shallow = true

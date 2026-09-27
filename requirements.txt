@@ -1,0 +1,23 @@
+# Install torch and torchvision separately using wheels that match the target
+# CUDA runtime.
+numpy>=1.21,<2
+omegaconf>=2.1,<2.4
+einops>=0.3,<1
+Pillow>=8
+packaging>=20
+pytorch-lightning>=1.4,<2
+transformers>=4.19,<5
+kornia>=0.5
+tqdm>=4.60
+six
+ftfy
+regex
+
+# Dataset and research utilities used by the inherited LDM code.
+academictorrents
+albumentations>=0.4
+matplotlib
+natsort
+opencv-python>=4.1
+PyYAML
+scipy

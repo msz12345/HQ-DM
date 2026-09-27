@@ -1,0 +1,118 @@
+{
+  "extension_abi": "v4",
+  "source_abi": "20260927r1",
+  "targets": [
+    {
+      "available": true,
+      "backend_id": "sm70_dp4a_im2col",
+      "capability": [
+        7,
+        0
+      ],
+      "compile_defines": [
+        "HQDM_NO_CUTLASS_BINDINGS=1"
+      ],
+      "convolution_status": "im2col-plus-vendor-gemm-fallback",
+      "description": "Volta CUDA-core INT8/DP4A fallback. Fused FWHT and epilogues are custom CUDA; GEMM uses torch._int_mm and spatial convolution materializes im2col. This is not a Tensor Core INT8 backend.",
+      "direct_spatial_convolution": false,
+      "execution_kind": "vendor_int8_im2col",
+      "extension_sources": [
+        "csrc/hq_int.cpp",
+        "csrc/hq_int_cuda.cu"
+      ],
+      "gemm_status": "vendor-dp4a-fallback",
+      "kernel_status": "fallback",
+      "minimum_cuda": "11.8",
+      "minimum_cutlass": null,
+      "requires_cutlass": false,
+      "sm": 70,
+      "torch_arch_list": "7.0",
+      "uses_int8_tensor_cores": false,
+      "validation_status": "validated-on-v100"
+    },
+    {
+      "available": true,
+      "backend_id": "sm80_cutlass_tensorop",
+      "capability": [
+        8,
+        0
+      ],
+      "compile_defines": [],
+      "convolution_status": "native-cutlass-sm80-implicit-gemm",
+      "description": "Ampere SM80 CUTLASS INT8 TensorOp GEMM and implicit-GEMM convolution.",
+      "direct_spatial_convolution": true,
+      "execution_kind": "cutlass_sm80_tensorop",
+      "extension_sources": [
+        "csrc/hq_int.cpp",
+        "csrc/hq_int_cuda.cu",
+        "csrc/cutlass_gemm.cu",
+        "csrc/cutlass_conv.cu"
+      ],
+      "gemm_status": "native-cutlass-sm80-tensorop",
+      "kernel_status": "native",
+      "minimum_cuda": "11.8",
+      "minimum_cutlass": "3.5.1",
+      "requires_cutlass": true,
+      "sm": 80,
+      "torch_arch_list": "8.0",
+      "uses_int8_tensor_cores": true,
+      "validation_status": "validated-on-a800"
+    },
+    {
+      "available": true,
+      "backend_id": "sm90_cutlass_sm80_compat",
+      "capability": [
+        9,
+        0
+      ],
+      "compile_defines": [],
+      "convolution_status": "ampere-implicit-gemm-compat",
+      "description": "Hopper-native cubin containing the reviewed SM80-style MMA compatibility algorithm.",
+      "direct_spatial_convolution": true,
+      "execution_kind": "cutlass_sm80_tensorop",
+      "extension_sources": [
+        "csrc/hq_int.cpp",
+        "csrc/hq_int_cuda.cu",
+        "csrc/cutlass_gemm.cu",
+        "csrc/cutlass_conv.cu"
+      ],
+      "gemm_status": "ampere-mma-compat",
+      "kernel_status": "compat",
+      "minimum_cuda": "12.0",
+      "minimum_cutlass": "3.5.1",
+      "requires_cutlass": true,
+      "sm": 90,
+      "torch_arch_list": "9.0",
+      "uses_int8_tensor_cores": true,
+      "validation_status": "validated-on-h200"
+    },
+    {
+      "available": true,
+      "backend_id": "sm120_cutlass_sm80_compat",
+      "capability": [
+        12,
+        0
+      ],
+      "compile_defines": [],
+      "convolution_status": "ampere-implicit-gemm-compat",
+      "description": "Blackwell-native cubin containing the reviewed SM80-style MMA compatibility algorithm. It requires CUDA 13/CUTLASS 4.2.0.",
+      "direct_spatial_convolution": true,
+      "execution_kind": "cutlass_sm80_tensorop",
+      "extension_sources": [
+        "csrc/hq_int.cpp",
+        "csrc/hq_int_cuda.cu",
+        "csrc/cutlass_gemm.cu",
+        "csrc/cutlass_conv.cu"
+      ],
+      "gemm_status": "ampere-mma-compat",
+      "kernel_status": "compat",
+      "minimum_cuda": "13.0",
+      "minimum_cutlass": "4.2.0",
+      "requires_cutlass": true,
+      "sm": 120,
+      "torch_arch_list": "12.0",
+      "uses_int8_tensor_cores": true,
+      "validation_status": "validated-on-rtx5090"
+    }
+  ]
+}
